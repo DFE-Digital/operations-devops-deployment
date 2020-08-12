@@ -36,40 +36,40 @@
             "metadata": {
                 "description": "This can be passed into the template via the reference function: [reference(resourceId(parameters('certificateResourceGroup'), 'Microsoft.Web/certificates', parameters('certificateName')), '2016-03-01').Thumbprint]"
             }
-		},
-		"appServiceAppSettings": {
-			"type": "array",
-			"defaultValue": [
-			]
-		},
-		"deployStagingSlot": {
-			"type": "bool",
-			"defaultValue": true
-		},
-		"azureStorageAccounts": {
-			"type": "object",
-			"defaultValue": {}
+        },
+        "appServiceAppSettings": {
+            "type": "array",
+            "defaultValue": [
+            ]
+        },
+        "deployStagingSlot": {
+            "type": "bool",
+            "defaultValue": true
+        },
+        "azureStorageAccounts": {
+            "type": "object",
+            "defaultValue": {}
         }
     },
     "variables": {
         "appServicePlanId": "[resourceId(parameters('appServicePlanRG'), 'Microsoft.Web/serverfarms', parameters('appServicePlanName'))]",
         "useCustomHostname": "[greater(length(parameters('customHostname')), 0)]",
-		"attachAzureStorageAccounts": "[greater(length(parameters('azureStorageAccounts')), 0)]",
-		"appServiceAppSettingsProvided": "[greater(length(parameters('appServiceAppSettings')), 0)]",
-		"siteConfigSettings": {
-			"withAppServiceSettings": {
-				"alwaysOn": true,
-				"linuxFxVersion": "[parameters('runtimeStack')]",
-				"appSettings": "[parameters('appServiceAppSettings')]"
-			},
-			"withoutAppServiceSettings": {
-				"alwaysOn": true,
-				"linuxFxVersion": "[parameters('runtimeStack')]"
-			},
-			"withoutLinuxFxVersion": {
-				"alwaysOn": true
-			}
-		}
+        "attachAzureStorageAccounts": "[greater(length(parameters('azureStorageAccounts')), 0)]",
+        "appServiceAppSettingsProvided": "[greater(length(parameters('appServiceAppSettings')), 0)]",
+        "siteConfigSettings": {
+            "withAppServiceSettings": {
+                "alwaysOn": true,
+                "linuxFxVersion": "[parameters('runtimeStack')]",
+                "appSettings": "[parameters('appServiceAppSettings')]"
+            },
+            "withoutAppServiceSettings": {
+                "alwaysOn": true,
+                "linuxFxVersion": "[parameters('runtimeStack')]"
+            },
+            "withoutLinuxFxVersion": {
+                "alwaysOn": true
+            }
+        }
     },
     "resources": [
         {
@@ -86,7 +86,7 @@
             },
             "resources": [
                 {
-					"condition": "[parameters('deployStagingSlot')]",
+                    "condition": "[parameters('deployStagingSlot')]",
                     "name": "staging",
                     "type": "slots",
                     "apiVersion": "2016-08-01",
@@ -95,19 +95,20 @@
                         "clientAffinityEnabled": false,
                         "serverFarmId": "[variables('appServicePlanId')]",
                         "siteConfig": "[if(variables('appServiceAppSettingsProvided'), variables('siteConfigSettings').withAppServiceSettings, variables('siteConfigSettings').withoutAppServiceSettings)]"
-					},
-					"resources": [{
-							"condition": "[variables('attachAzureStorageAccounts')]",
-							"name": "azureStorageAccounts",
-							"type": "config",
-							"apiVersion": "2018-02-01",
-							"location": "[resourceGroup().location]",
-							"properties": "[parameters('azureStorageAccounts')]",
-							"dependsOn": [
-								"staging"
-							]
+                    },
+                    "resources": [
+                        {
+                            "condition": "[variables('attachAzureStorageAccounts')]",
+                            "name": "azureStorageAccounts",
+                            "type": "config",
+                            "apiVersion": "2018-02-01",
+                            "location": "[resourceGroup().location]",
+                            "properties": "[parameters('azureStorageAccounts')]",
+                            "dependsOn": [
+                                "staging"
+                            ]
                         }
-					],
+                    ],
                     "dependsOn": [
                         "[parameters('appServiceName')]"
                     ]
@@ -129,10 +130,10 @@
             ]
         }
     ],
-	"outputs": {
-		"possibleOutboundIpAddresses": {
-			"type": "array",
-			"value": "[split(reference(parameters('appServiceName')).possibleOutboundIpAddresses, ',')]"
-		}
-	}
+    "outputs": {
+        "possibleOutboundIpAddresses": {
+            "type": "array",
+            "value": "[split(reference(parameters('appServiceName')).possibleOutboundIpAddresses, ',')]"
+        }
+    }
 }
