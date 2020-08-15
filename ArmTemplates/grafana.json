@@ -94,7 +94,7 @@
     }
   },
   "variables": {
-    "appServiceName": "[concat(parameters('projectIdentifier'), '-', parameters('ProjectName'), '-gfa',if(contains(parameters('projectIdentifier'),'s141'),'','-as'))]",
+    "appServiceName": "[concat(parameters('projectIdentifier'), '-', parameters('ProjectName'), '-gfa-as')]",
     "appServicePlanName": "[concat(parameters('projectIdentifier'), '-', parameters('ProjectName'), '-gfa-asp')]",
     "appServiceRuntimeStack": "[concat('DOCKER|', 'grafana/grafana:', parameters('grafanaVersion'))]",
     "mySqlServerName": "[concat(parameters('projectIdentifier'), '-', parameters('ProjectName'), '-gfa-msql')]",
