@@ -101,7 +101,7 @@
     "mySqlServerFQDN": "[concat(parameters('projectIdentifier'), '-', parameters('ProjectName'), '-gfa-msql.mysql.database.azure.com')]",
     "grafanaDatabaseName": "[concat(parameters('projectIdentifier'), '_', parameters('ProjectName'), '_gfa_db')]",
     "grafanaDatabaseUser": "[concat(parameters('mySqlAdminLogin'), '@',variables('mySqlServerName'))]",
-    "storageAccountName": "[concat(parameters('projectIdentifier'), parameters('ProjectName'), 'gfastr')]"
+    "storageAccountName": "[replace(concat(parameters('projectIdentifier'), parameters('ProjectName'), 'gfastr'), '-', '')]"
   },
   "resources": [
     {
