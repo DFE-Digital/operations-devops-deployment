@@ -294,21 +294,21 @@
             "value": {
               "GrafanaData": {
                 "accessKey": "[reference('storage-account').outputs.storageKey.value]",
-                "accountName": "[variables('storageAccountName')]",
+                "accountName": "[reference('storage-account').outputs.storageAccountName]",
                 "mountPath": "/var/lib/grafana",
                 "shareName": "data",
                 "type": "AzureFiles"
               },
               "GrafanaProvisioning": {
                 "accessKey": "[reference('storage-account').outputs.storageKey.value]",
-                "accountName": "[variables('storageAccountName')]",
+                "accountName": "[reference('storage-account').outputs.storageAccountName]",
                 "mountPath": "/etc/grafana/provisioning",
                 "shareName": "provisioning",
                 "type": "AzureFiles"
               },
               "GrafanaLogs": {
                 "accessKey": "[reference('storage-account').outputs.storageKey.value]",
-                "accountName": "[variables('storageAccountName')]",
+                "accountName": "[reference('storage-account').outputs.storageAccountName]",
                 "mountPath": "/var/log/grafana",
                 "shareName": "logs",
                 "type": "AzureFiles"
@@ -359,7 +359,7 @@
         },
         "parameters": {
           "storageAccountName": {
-            "value": "[variables('storageAccountName')]"
+            "value": "[reference('storage-account').outputs.storageAccountName]"
           },
           "fileShareName": {
             "value": "[parameters('storageContainers')[copyIndex()]]"
@@ -382,7 +382,7 @@
     },
     "storageAccountName": {
       "type": "string",
-      "value": "[variables('storageAccountName')]"
+      "value": "[reference('storage-account').outputs.storageAccountName]"
     }
   }
 }
