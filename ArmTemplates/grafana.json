@@ -101,7 +101,7 @@
     "mySqlServerFQDN": "[concat(parameters('projectIdentifier'), '-', parameters('ProjectName'), '-gfa-msql.mysql.database.azure.com')]",
     "grafanaDatabaseName": "[concat(parameters('projectIdentifier'), '_', parameters('ProjectName'), '_gfa_db')]",
     "grafanaDatabaseUser": "[concat(parameters('mySqlAdminLogin'), '@',variables('mySqlServerName'))]",
-    "storageAccountName": "[replace(concat(parameters('projectIdentifier'), parameters('ProjectName'), 'gfastr'), '-', '')]"
+    "storageAccountName": "[toLower(replace(concat(parameters('projectIdentifier'), parameters('ProjectName'), 'gfastr'), '-', ''))]"
   },
   "resources": [
     {
@@ -294,21 +294,21 @@
             "value": {
               "GrafanaData": {
                 "accessKey": "[reference('storage-account').outputs.storageKey.value]",
-                "accountName": "[reference('storage-account').outputs.storageAccountName]",
+                "accountName": "[variables('storageAccountName')]",
                 "mountPath": "/var/lib/grafana",
                 "shareName": "data",
                 "type": "AzureFiles"
               },
               "GrafanaProvisioning": {
                 "accessKey": "[reference('storage-account').outputs.storageKey.value]",
-                "accountName": "[reference('storage-account').outputs.storageAccountName]",
+                "accountName": "[variables('storageAccountName')]",
                 "mountPath": "/etc/grafana/provisioning",
                 "shareName": "provisioning",
                 "type": "AzureFiles"
               },
               "GrafanaLogs": {
                 "accessKey": "[reference('storage-account').outputs.storageKey.value]",
-                "accountName": "[reference('storage-account').outputs.storageAccountName]",
+                "accountName": "[variables('storageAccountName')]",
                 "mountPath": "/var/log/grafana",
                 "shareName": "logs",
                 "type": "AzureFiles"
@@ -359,7 +359,7 @@
         },
         "parameters": {
           "storageAccountName": {
-            "value": "[reference('storage-account').outputs.storageAccountName]"
+            "value": "[variables('storageAccountName')]"
           },
           "fileShareName": {
             "value": "[parameters('storageContainers')[copyIndex()]]"
@@ -382,7 +382,7 @@
     },
     "storageAccountName": {
       "type": "string",
-      "value": "[reference('storage-account').outputs.storageAccountName]"
+      "value": "[variables('storageAccountName')]"
     }
   }
 }
