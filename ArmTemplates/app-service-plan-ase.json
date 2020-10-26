@@ -44,9 +44,6 @@
         "PremiumV2"
       ],
       "defaultValue": "Standard"
-    },
-    "resourceTags": {
-      "type": "object"
     }
   },
   "variables": {
@@ -87,8 +84,7 @@
       "name": "[parameters('appServicePlanName')]",
       "location": "[parameters('aspLocation')]",
       "properties": "[if(variables('DeployToASE'), variables('ASPResourceProperties').WithASE, variables('ASPResourceProperties').WithoutASE)]",
-      "sku": "[if(variables('DeployToASE'), variables('defaultAppServicePlanSKUs').Isolated, variables('defaultAppServicePlanSKUs').NonASE)]",
-      "tags": "[parameters('resourceTags')]"
+      "sku": "[if(variables('DeployToASE'), variables('defaultAppServicePlanSKUs').Isolated, variables('defaultAppServicePlanSKUs').NonASE)]"
     }
   ],
   "outputs": {

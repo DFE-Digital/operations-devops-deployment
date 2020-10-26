@@ -1,5 +1,5 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "sqlServerName": {
@@ -43,9 +43,6 @@
             "metadata": {
                 "description": "Name of the SQL logs storage account for the environment"
             }
-        },
-        "resourceTags": {
-            "type": "object"
         }
     },
     "variables": {
@@ -59,7 +56,6 @@
             "name": "[parameters('sqlServerName')]",
             "type": "Microsoft.Sql/servers",
             "apiVersion": "2015-05-01-preview",
-            "tags": "[parameters('resourceTags')]",
             "location": "[resourceGroup().location]",
             "properties": {
                 "administratorLogin": "[parameters('sqlServerAdminUserName')]",
