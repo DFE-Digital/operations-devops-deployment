@@ -45,6 +45,9 @@
                 "StorageV2",
                 "BlobStorage"
             ]
+        },
+        "resourceTags": {
+            "type": "object"
         }
     },
     "variables": {},
@@ -58,7 +61,7 @@
                 "name": "[parameters('accountType')]"
             },
             "kind": "[parameters('storageKind')]",
-            "tags": {},
+            "tags": "[parameters('resourceTags')]",
             "properties": {
                 "encryption": {
                     "services": {

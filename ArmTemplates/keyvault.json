@@ -23,6 +23,9 @@
         "enableSoftDelete": {
             "type": "bool",
             "defaultValue": false
+        },
+        "resourceTags": {
+            "type": "object"
         }
     },
     "variables": {},
@@ -32,6 +35,7 @@
             "name": "[parameters('keyVaultName')]",
             "apiVersion": "2018-02-14",
             "location": "[resourceGroup().location]",
+            "tags": "[parameters('resourceTags')]",
             "properties": {
                 "enabledForDiskEncryption": "[parameters('enabledForDiskEncryption')]",
                 "enabledForTemplateDeployment": "[parameters('enabledForTemplateDeployment')]",
