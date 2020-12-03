@@ -78,7 +78,14 @@
                     "alwaysOn": true,
                     "appSettings": "[parameters('appServiceAppSettings')]",
                     "connectionStrings": "[parameters('appServiceConnectionStrings')]",
-                    "ipSecurityRestrictions": "[parameters('ipSecurityRestrictions')]"
+                    "ipSecurityRestrictions": "[parameters('ipSecurityRestrictions')]",
+                    "metadata": [
+                        {
+                            "name": "CURRENT_STACK",
+                            "value": "[parameters('currentStack')]"
+                        }
+                    ],
+                    "netFrameworkVersion": "[parameters('netFrameworkVersion')]"
                 },
                 "httpsOnly": true
             },
