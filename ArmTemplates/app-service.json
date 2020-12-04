@@ -48,19 +48,12 @@
             "metadata": {
                 "description": "Format removing backlashes: [{\"Name\": \"IP A\",\"ipAddress\": \"123.123.123.123\"},{\"Name\": \"IP B\",\"ipAddress\": \"234.234.234.234\"}]"
             }
-        },
-        "currentStack": {
-            "type": "string",
-            "defaultValue": "dotnet"
-        },
-        "netFrameworkVersion": {
-            "type": "string",
-            "defaultValue": "v4.0"
         }
     },
     "variables": {
         "useCustomHostname": "[greater(length(parameters('customHostname')), 0)]",
-        "appServicePlanId": "[resourceId(parameters('appServicePlanResourceGroup'), 'Microsoft.Web/serverfarms', parameters('appServicePlanName'))]"
+        "appServicePlanId": "[resourceId(parameters('appServicePlanResourceGroup'), 'Microsoft.Web/serverfarms', parameters('appServicePlanName'))]",
+
     },
     "resources": [
         {
@@ -78,14 +71,7 @@
                     "alwaysOn": true,
                     "appSettings": "[parameters('appServiceAppSettings')]",
                     "connectionStrings": "[parameters('appServiceConnectionStrings')]",
-                    "ipSecurityRestrictions": "[parameters('ipSecurityRestrictions')]",
-                    "metadata": [
-                        {
-                            "name": "CURRENT_STACK",
-                            "value": "[parameters('currentStack')]"
-                        }
-                    ],
-                    "netFrameworkVersion": "[parameters('netFrameworkVersion')]"
+                    "ipSecurityRestrictions": "[parameters('ipSecurityRestrictions')]"
                 },
                 "httpsOnly": true
             },
@@ -104,14 +90,7 @@
                         "siteConfig": {
                             "appSettings": "[parameters('appServiceAppSettings')]",
                             "connectionStrings": "[parameters('appServiceConnectionStrings')]",
-                            "ipSecurityRestrictions": "[parameters('ipSecurityRestrictions')]",
-                            "metadata": [
-                                {
-                                    "name": "CURRENT_STACK",
-                                    "value": "[parameters('currentStack')]"
-                                }
-                            ],
-                            "netFrameworkVersion": "[parameters('netFrameworkVersion')]"
+                            "ipSecurityRestrictions": "[parameters('ipSecurityRestrictions')]"                           
                         }
                     },
                     "dependsOn": [
