@@ -25,7 +25,10 @@
             "location": "[parameters('keyVaultResourceGroup')]",
             "properties": {
                 "accessPolicies": "[parameters('keyVaultAccessPolicies')]"
-            }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+            ]
         }
     ],
     "outputs": {}
