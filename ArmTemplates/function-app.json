@@ -30,14 +30,13 @@
                 "description": "This can be passed into the template via the reference function: [reference(resourceId(parameters('certificateResourceGroup'), 'Microsoft.Web/certificates', parameters('certificateName')), '2016-03-01').Thumbprint]"
             }
         },
-        "systemAssignedIdentity":{
+        "systemAssignedIdentity": {
             "type": "string",
-            "defaultValue": "",
-            "allowedValues":[
-                "",
+            "defaultValue": "None",
+            "allowedValues": [
+                "None",
                 "SystemAssigned"
             ]
-
         }
     },
     "variables": {
@@ -48,7 +47,7 @@
         {
             "name": "[parameters('functionAppName')]",
             "type": "Microsoft.Web/sites",
-            "kind": "functionapp",            
+            "kind": "functionapp",
             "identity": {
                 "type": "[parameters('systemAssignedIdentity')]"
             },
