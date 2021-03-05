@@ -21,8 +21,7 @@
         // {
         //     "type": "Microsoft.KeyVault/vaults/accessPolicies",
         //     "name": "[parameters('keyVaultName')]",
-        //     "apiVersion": "2019-09-01",
-        //     "location": "[parameters('keyVaultResourceGroup')]",
+        //     "apiVersion": "2019-09-01",        
         //     "properties": {
         //         "value": "[parameters('keyVaultAccessPolicies')]"
         //     },
@@ -30,12 +29,13 @@
         //         "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
         //     ]
         // }
-        
+
         {
             "type": "Microsoft.KeyVault/vaults",
-            "name": "[parameters('keyVaultName')]",
-            "apiVersion": "2019-09-01",            
+            "name": "[parameters('keyVaultName')]",            
+            "apiVersion": "2019-09-01",
             "properties": {
+                "tenantId": "[subscription().tenantId]",
                 "accessPolicies": "[parameters('keyVaultAccessPolicies')]"
             }
         }
