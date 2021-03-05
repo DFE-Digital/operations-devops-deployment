@@ -35,7 +35,7 @@
             "type": "Microsoft.KeyVault/vaults",
             "name": "[parameters('keyVaultName')]",
             "apiVersion": "2019-09-01",
-            "location": "[parameters('keyVaultResourceGroup')]",
+            "resourceGroup": "[parameters('keyVaultResourceGroup')]",
             "properties": {
                 "accessPolicies": "[parameters('keyVaultAccessPolicies')]"
             }
