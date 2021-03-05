@@ -5,9 +5,6 @@
         "keyVaultName": {
             "type": "string"
         },
-        "keyVaultLocation": {
-            "type": "string"
-        },
         "keyVaultAccessPolicies": {
             "type": "array",
             "defaultValue": [],
@@ -16,7 +13,9 @@
             }
         }
     },
-    "variables": {},
+    "variables": {
+        "keyVaultLocation": "[resourceGroup().location]"
+    },
     "resources": [
         // {
         //     "type": "Microsoft.KeyVault/vaults/accessPolicies",
@@ -32,10 +31,10 @@
 
         {
             "type": "Microsoft.KeyVault/vaults",
-            "name": "[parameters('keyVaultName')]",            
+            "name": "[parameters('keyVaultName')]",
             "apiVersion": "2019-09-01",
-            "location": "[parameters('keyVaultLocation')]",
-            "properties": {                
+            "location": "[variables('keyVaultLocation')]",
+            "properties": {
                 "accessPolicies": "[parameters('keyVaultAccessPolicies')]"
             }
         }
