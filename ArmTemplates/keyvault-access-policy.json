@@ -19,7 +19,7 @@
     "resources": [
         {
             "type": "Microsoft.KeyVault/vaults/accessPolicies",
-            "name": "[parameters('keyVaultName')]",
+            "name": "[concat(parameters('keyVaultName'), '/', 'accessPolicies')]",
             "apiVersion": "2019-09-01",
             "properties": {
                 "value": "[parameters('keyVaultAccessPolicies')]"
