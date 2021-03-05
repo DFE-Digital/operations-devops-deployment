@@ -18,28 +18,28 @@
     },
     "variables": {},
     "resources": [
-        {
-            "type": "Microsoft.KeyVault/vaults/accessPolicies",
-            "name": "[parameters('keyVaultName')]",
-            "apiVersion": "2019-04-01",
-            "location": "[parameters('keyVaultResourceGroup')]",
-            "properties": {
-                "value": "[parameters('keyVaultAccessPolicies')]"
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
-            ]
-        }
-        
         // {
-        //     "type": "Microsoft.KeyVault/vaults",
+        //     "type": "Microsoft.KeyVault/vaults/accessPolicies",
         //     "name": "[parameters('keyVaultName')]",
         //     "apiVersion": "2019-09-01",
         //     "location": "[parameters('keyVaultResourceGroup')]",
         //     "properties": {
-        //         "accessPolicies": "[parameters('keyVaultAccessPolicies')]"
-        //     }
+        //         "value": "[parameters('keyVaultAccessPolicies')]"
+        //     },
+        //     "dependsOn": [
+        //         "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+        //     ]
         // }
+        
+        {
+            "type": "Microsoft.KeyVault/vaults",
+            "name": "[parameters('keyVaultName')]",
+            "apiVersion": "2019-09-01",
+            "location": "[parameters('keyVaultResourceGroup')]",
+            "properties": {
+                "accessPolicies": "[parameters('keyVaultAccessPolicies')]"
+            }
+        }
     ],
     "outputs": {}
 }
