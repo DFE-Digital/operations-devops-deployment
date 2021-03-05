@@ -13,17 +13,15 @@
             }
         }
     },
-    "variables": {
-        "keyVaultLocation": "[resourceGroup().location]"
-    },
+    "variables": {},
     "resources": [
         {
             "type": "Microsoft.KeyVault/vaults/accessPolicies",
-            "name": "[concat(parameters('keyVaultName'), '/', 'accessPolicies')]",
+            "name": "[concat(parameters('keyVaultName'), '/add')]",
             "apiVersion": "2019-09-01",
             "properties": {
                 "value": "[parameters('keyVaultAccessPolicies')]"
-            }            
+            }
         }
 
         // {
