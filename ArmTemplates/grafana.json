@@ -9,9 +9,6 @@
     "projectIdentifier": {
       "type": "string"
     },
-    "projectName": {
-      "type": "string"
-    },
     "mySqlSkuName": {
       "type": "string",
       "defaultValue": "B_Gen5_2"
@@ -94,14 +91,14 @@
     }
   },
   "variables": {
-    "appServiceName": "[concat(parameters('projectIdentifier'), '-', parameters('ProjectName'), '-gfa-as')]",
-    "appServicePlanName": "[concat(parameters('projectIdentifier'), '-', parameters('ProjectName'), '-gfa-asp')]",
+    "appServiceName": "[concat(parameters('projectIdentifier'), '-gfa-as')]",
+    "appServicePlanName": "[concat(parameters('projectIdentifier'), '-gfa-asp')]",
     "appServiceRuntimeStack": "[concat('DOCKER|', 'grafana/grafana:', parameters('grafanaVersion'))]",
-    "mySqlServerName": "[concat(parameters('projectIdentifier'), '-', parameters('ProjectName'), '-gfa-msql')]",
-    "mySqlServerFQDN": "[concat(parameters('projectIdentifier'), '-', parameters('ProjectName'), '-gfa-msql.mysql.database.azure.com')]",
-    "grafanaDatabaseName": "[concat(parameters('projectIdentifier'), '_', parameters('ProjectName'), '_gfa_db')]",
+    "mySqlServerName": "[concat(parameters('projectIdentifier'), '-gfa-msql')]",
+    "mySqlServerFQDN": "[concat(parameters('projectIdentifier'), '-gfa-msql.mysql.database.azure.com')]",
+    "grafanaDatabaseName": "[concat(parameters('projectIdentifier'), '_gfa_db')]",
     "grafanaDatabaseUser": "[concat(parameters('mySqlAdminLogin'), '@',variables('mySqlServerName'))]",
-    "storageAccountName": "[toLower(replace(concat(parameters('projectIdentifier'), parameters('ProjectName'), 'gfastr'), '-', ''))]"
+    "storageAccountName": "[toLower(replace(concat(parameters('projectIdentifier'), 'gfastr'), '-', ''))]"
   },
   "resources": [
     {

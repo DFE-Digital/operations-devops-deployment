@@ -7,10 +7,7 @@
         },
         "projectIdentifier": {
             "value": "s126d01"
-        },
-        "projectName":{
-            "value": "T-Levels"
-        },
+        },        
         "mySqlAdminLogin": {
             "value": "Admin"
         },
