@@ -50,14 +50,14 @@
         }
       }
     },
-    "variables": {
-      "apiManagementServiceName": "[greater(length(parameters('apiManagementServiceName')), 0)]"
-    },
+    // "variables": {
+    //   "apiManagementServiceName": "[greater(length(parameters('apiManagementServiceName')), 0)]"
+    // },
     "resources": [
       {
         "type": "Microsoft.ApiManagement/service",
         "apiVersion": "2019-12-01",
-        "name": "[variables('apiManagementServiceName')]",
+        "name": "[parameters('apiManagementServiceName')]",
         "location": "[parameters('location')]",
         "sku": {
           "name": "[parameters('sku')]",
