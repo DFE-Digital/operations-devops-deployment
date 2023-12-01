@@ -11,6 +11,9 @@
         "attachedService": {
             "defaultValue": "",
             "type": "string"
+        },
+        "WorkspaceResourceId": {
+            "type": "string"
         }
     },
     "resources": [
