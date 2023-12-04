@@ -12,7 +12,7 @@
             "defaultValue": "",
             "type": "string"
         },
-        "WorkspaceResourceId": {
+        "workspaceResourceId": {
             "type": "string"
         }
     },
@@ -28,7 +28,7 @@
             },
             "properties": {
                 "Application_Type": "web",
-                "WorkspaceResourceId": "[parameters('workspaceResourceId')]"
+                "workspaceResourceId": "[parameters('workspaceResourceId')]"
             }
         }
     ],
