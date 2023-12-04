@@ -27,7 +27,8 @@
                 "[concat('hidden-link:', resourceId('Microsoft.Web/sites', parameters('attachedService')))]": "Resource"
             },
             "properties": {
-                "Application_Type": "web"
+                "Application_Type": "web",
+                "WorkspaceResourceId": "[parameters('workspaceResourceId')]"
             }
         }
     ],
