@@ -11,11 +11,14 @@
         "attachedService": {
             "defaultValue": "",
             "type": "string"
+        },
+        "workspaceResourceId": {
+            "type": "string"
         }
     },
     "resources": [
         {
-            "apiVersion": "2015-05-01",
+            "apiVersion": "2020-02-02",
             "name": "[parameters('appInsightsName')]",
             "type": "Microsoft.Insights/components",
             "location": "[resourceGroup().location]",
@@ -24,7 +27,8 @@
                 "[concat('hidden-link:', resourceId('Microsoft.Web/sites', parameters('attachedService')))]": "Resource"
             },
             "properties": {
-                "Application_Type": "web"
+                "Application_Type": "web",
+                "workspaceResourceId": "[parameters('workspaceResourceId')]"
             }
         }
     ],
